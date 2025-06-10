@@ -5,9 +5,9 @@ const fetch = require('node-fetch'); // Necesario para 'fetch' si Node.js < 18
 const cron = require('node-cron');
 
 // Esta es la URL de tu bot principal desplegado en Render (Servidor A)
-// DEBES REEMPLAZAR ESTO CON LA URL REAL DE TU BOT PRINCIPAL
-// EJEMPLO: https://botmine-5gpi.onrender.com/ping
-const MAIN_BOT_URL = process.env.MAIN_BOT_URL || 'https://tu-bot-principal.onrender.com/ping';
+// Se usará la variable de entorno MAIN_BOT_URL si está configurada en Render,
+// de lo contrario, usará la URL que se proporciona aquí como fallback.
+const MAIN_BOT_URL = process.env.MAIN_BOT_URL || 'https://botmine-jbn9.onrender.com/ping';
 
 app.get('/', (req, res) => {
     res.send('Dummy server is awake! Pinging main bot...');
@@ -23,6 +23,7 @@ app.get('/dummy-ping', (req, res) => {
 
 async function pingMainBot() {
     try {
+        // Solo envía el ping si la URL no es el valor por defecto (para evitar pings a una URL genérica)
         if (MAIN_BOT_URL && MAIN_BOT_URL !== 'https://tu-bot-principal.onrender.com/ping') {
             console.log(`[Dummy Server] Enviando ping a: ${MAIN_BOT_URL}`);
             const response = await fetch(MAIN_BOT_URL, { method: 'GET' });
