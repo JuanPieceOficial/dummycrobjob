@@ -1,0 +1,20 @@
+{
+  "name": "dummy-render-pinger",
+  "version": "1.0.0",
+  "description": "A simple Node.js server to ping another Render service.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-cron": "^3.0.0",
+    "node-fetch": "^2.6.7" // Si usas Node.js < 18, necesitas node-fetch para 'fetch'
+  },
+  "engines": {
+    "node": "18.x" // Asegúrate de que coincida con lo que Render soporta
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
